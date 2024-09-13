@@ -1,0 +1,60 @@
+.btn-primary, .btn-secondary, .btn-gray {
+    cursor: pointer;
+
+    /* The size properties */
+    width: 230px;
+    height: 47px;
+
+    /* Display the svg and the text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+
+    /* Border properties */
+    border: 1px solid #F93B1D;
+    border-radius: 10px;
+    padding: 10px, 16px, 10px, 16px;
+
+    /* Text properties */
+    font-size: 16px;
+    font-weight: 500; 
+    color: #FFFFFF;
+}
+
+.btn-primary {
+    background-color: #F93B1D;
+}
+
+.btn-primary:hover {
+    background-color: #DF3014;
+}
+
+.btn-secondary {
+    color: black;
+    background-color: #FFFFFF;
+}
+
+.btn-secondary > svg > path {
+    fill: black;
+}
+
+.btn-secondary:hover > svg > path {
+    fill: white;
+}
+
+.btn-secondary:hover {
+    color: white;
+    background-color: #F93B1D;
+}
+
+.btn-gray {
+    background-color: white;
+    color: #808A93;
+    border-color: #808A93;
+}
+
+.btn-gray:hover {
+    background-color: #808A93;
+    color: white;
+}

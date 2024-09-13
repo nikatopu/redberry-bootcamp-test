@@ -1,0 +1,82 @@
+.card {
+    /* Set the card parameters */
+    cursor: pointer;
+
+    width: 384px;
+    height: 455px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    border-radius: 25px;
+    border: 1px solid #DBDBDB;
+
+    margin: 20px;
+
+    /* Hide the overflow */
+    overflow: hidden;
+
+    /* For the shadow removal */
+    transition-duration: 0.2s;
+    
+}
+
+.card:hover {
+    /* Add the shadow */
+    box-shadow: 5px 5px 12px #02152614;
+    transform: translateY(-4px) scale(1.01);
+    transition-duration: 0.2s;
+}
+
+.card-image {
+    width: 384px;
+    height: 307px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.card-image > img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+
+    padding: 15px;
+}
+
+.card-major-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-major-info > h1 {
+    margin: 0;
+}
+
+.svg-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.svg-data > p {
+    margin: 0;
+}
+
+.card-minor-info {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}

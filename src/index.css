@@ -2,6 +2,9 @@ body {
     /* Set the margin to 0 so the header is full width */
     margin: 0;
 
+    /* Set the font */
+    font-family: 'FiraGO', sans-serif;
+
     /* I hate when you can scroll sideways
     with touch devices even if there is nothing
     to scroll to */

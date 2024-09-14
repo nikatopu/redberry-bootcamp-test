@@ -2,8 +2,10 @@
     cursor: pointer;
 
     /* The size properties */
-    width: 230px;
+    width: max-content;
     height: 47px;
+
+    padding: 0px 15px;
 
     /* Display the svg and the text */
     display: flex;
@@ -18,7 +20,7 @@
 
     /* Text properties */
     font-size: 16px;
-    font-weight: 500; 
+    font-weight: 600; 
     color: #FFFFFF;
 }
 

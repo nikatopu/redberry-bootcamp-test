@@ -3,3 +3,19 @@
     margin: 0;
     padding: 0;
 }
+
+.btn-group {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.filter-and-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 20px;
+}

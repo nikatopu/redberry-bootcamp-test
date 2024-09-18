@@ -33,12 +33,12 @@
 }
 
 .btn-secondary {
-    color: black;
+    color: #F93B1D;
     background-color: #FFFFFF;
 }
 
 .btn-secondary > svg > path {
-    fill: black;
+    fill: #F93B1D;
 }
 
 .btn-secondary:hover > svg > path {

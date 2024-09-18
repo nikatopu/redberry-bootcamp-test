@@ -1,0 +1,137 @@
+/* For hiding the entire div */
+.hidden {
+    display: none !important;
+}
+
+.agent-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: rgb(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.agent-form-inside {
+    gap: 35px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 1009px;
+    height: 784px;
+    padding: 45px;
+    border-radius: 5px;
+
+    background-color: white;
+    opacity: 1;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 2;
+
+    width: 100%;
+
+    height: 100%;
+}
+
+form > .move-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    
+    width: calc(50% - 10px);
+    padding: 5px;
+
+    font-weight: 600;
+    font-size: 17px;
+}
+
+label > input {
+    height: 42px;
+    border-radius: 10px;
+
+    border: 1px solid black;
+    margin-top: 5px;
+}
+
+label > p {
+    font-weight: 500;
+}
+
+#post-photo > label > input[type="file"] {
+    display: none;
+}
+
+#post-photo {
+    width: 100%;
+}
+
+#post-photo > label {
+    cursor: pointer;
+
+    margin-top: 5px;
+
+    width: 100%;
+    height: 120px;
+
+    border: 1px dashed black;
+    border-radius: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#post-photo > label > div > img {
+    width: 90px;
+    height: 90px;
+
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+#post-photo > label > div > svg {
+    position: relative;
+    left: -15px;
+    bottom: -5px;
+}
+
+.correct > p {
+    color: #45A849;
+}
+
+.correct > p > svg > path {
+    stroke: #45A849;
+}
+
+.incorrect > input {
+    border: 1px solid #F93B1D;
+}
+
+.incorrect > input:focus-visible {
+    outline: #F93B1D solid 1px;
+}
+
+.incorrect > p {
+    color: #F93B1D
+}
+
+.incorrect > p > svg > path {
+    stroke: #F93B1D;
+}

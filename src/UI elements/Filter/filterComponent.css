@@ -6,10 +6,12 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 0.26lvw;
 
-    padding: 5px;
-    border-radius: 5px;
+    padding: 0.26lvw;
+    border-radius: 0.26lvw;
+
+    font-size: 0.8lvw;
 
     font-weight: 600;
 }

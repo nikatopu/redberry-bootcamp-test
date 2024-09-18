@@ -3,23 +3,23 @@
 
     /* The size properties */
     width: max-content;
-    height: 47px;
+    height: 4.36lvh;
 
-    padding: 0px 15px;
+    padding: 0px 0.78lvw;
 
     /* Display the svg and the text */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    gap: 0.2lvw;
 
     /* Border properties */
     border: 1px solid #F93B1D;
-    border-radius: 10px;
-    padding: 10px, 16px, 10px, 16px;
+    border-radius: 0.5lvw;
+    padding: 0.5lvw, 0.76lvw;
 
     /* Text properties */
-    font-size: 16px;
+    font-size: 0.8lvw;
     font-weight: 600; 
     color: #FFFFFF;
 }

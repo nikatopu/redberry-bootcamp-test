@@ -2,17 +2,17 @@
     /* Set the card parameters */
     cursor: pointer;
 
-    width: 384px;
-    height: 455px;
+    width: 20lvw;
+    height: 42lvh;
 
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.5lvw;
 
-    border-radius: 25px;
+    border-radius: 1.3lvw;
     border: 1px solid #DBDBDB;
 
-    margin: 20px;
+    margin: 1lvw;
 
     /* Hide the overflow */
     overflow: hidden;
@@ -24,14 +24,14 @@
 
 .card:hover {
     /* Add the shadow */
-    box-shadow: 5px 5px 12px #02152614;
+    box-shadow: 0.25lvw 0.25lvw 0.625lvw #02152614;
     transform: translateY(-4px) scale(1.01);
     transition-duration: 0.2s;
 }
 
 .card-image {
-    width: 384px;
-    height: 307px;
+    width: 20lvw;
+    height: 28.5lvh;
 
     display: flex;
     justify-content: center;
@@ -50,9 +50,9 @@
     display: flex;
     flex-direction: column;
 
-    gap: 30px;
+    gap: 2.8lvh;
 
-    padding: 15px;
+    padding: 1.4lvh;
 }
 
 .card-major-info {
@@ -68,7 +68,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 5px;
+    gap: 0.25lvw;
 }
 
 .svg-data > p {
@@ -78,5 +78,5 @@
 .card-minor-info {
     display: flex;
     flex-direction: row;
-    gap: 32px;
+    gap: 1.7lvw;
 }

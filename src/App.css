@@ -7,7 +7,7 @@
 .btn-group {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 1lvw;
 }
 
 .filter-and-buttons {
@@ -15,7 +15,7 @@
     flex-direction: row;
     justify-content: space-between;
 
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-top: 20px;
+    margin-left: 5.2lvw;
+    margin-right: 5.2lvw;
+    margin-top: 1.85lvh;
 }

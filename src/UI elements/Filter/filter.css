@@ -1,10 +1,10 @@
 .filter {
     display: flex;
     flex-direction: row;
-    gap: 30px;
-    padding: 5px;
+    gap: 1.5lvw;
+    padding: 0.25lvw;
     width: max-content;
 
-    border-radius: 10px;
+    border-radius: 0.5lvw;
     border: 1px solid #DBDBDB;
 }

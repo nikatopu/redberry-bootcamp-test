@@ -1,17 +1,17 @@
 header {
     /* Set the header parameters */
-    height: 100px;
+    height: 9lvh;
     border: 1px solid #DBDBDB;
 
     /* Position the Redberry logo */
     display: flex;
     align-items: center;
 
-    padding: 0 100px;
+    padding: 0 5.2lvw;
 }
 
 header > img {
     /* Set the Redberry logo parameters */
-    width: 150px;
-    height: 24px;
+    width: 7.8lvw;
+    height: auto;
 }

@@ -37,6 +37,8 @@
     justify-content: center;
     align-items: center;
 
+    position: relative;
+
 }
 
 .card-image > img {
@@ -44,6 +46,18 @@
     height: 100%;
 
     object-fit: cover;
+}
+
+.card-image > p {
+    position: absolute;
+    left: 1lvw;
+    top: 0.5lvw;
+
+    background-color: rgba(2, 21, 38, 0.75);
+    padding: 0.5lvw 1lvw;
+
+    color: white;
+    border-radius: 1lvw;
 }
 
 .card-info {

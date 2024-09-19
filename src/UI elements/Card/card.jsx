@@ -35,16 +35,30 @@ function Card({data, show}) {
         data=dataReplacement;
     }
 
+    const priceToString = (p) => {
+        if (p === undefined || p === null) {
+            return null;
+        }
+
+        return p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ", ");
+    }
+
+    const cityName = (city) => {
+        if (city === undefined || city === null) {return null}
+        return city.name;
+    }
+
     return <div className="card" onClick={() => show(data.id)}>
         {/* ------- The card image ------- */}
         <div className="card-image">
+            <p>{data.is_rental ? "ქირავდება" : "იყიდება"}</p>
             <img src={data.image} alt="The product"/>
         </div>
 
         <div className="card-info">
             <div className="card-major-info">
                 {/* ------- The card price ------- */}
-                <h1>{data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₾</h1>
+                <h1>{priceToString(data.price)} ₾</h1>
 
                 {/* ------- The card location ------- */}
                 <div className="svg-data">
@@ -53,7 +67,7 @@ function Card({data, show}) {
                     </svg>
 
                     <p>
-                        {data.city.name}, {data.address}
+                        {cityName(data.city)}, {data.address}
                     </p>
                 </div>
             </div>

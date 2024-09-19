@@ -1,7 +1,7 @@
 import React from "react";
 import "./button.css";
 
-function Button({str = "დამაკლიკე", primary=true, gray=false, plus=true, whenClicked=console.log("clicked")}) {
+function Button({str = "დამაკლიკე", primary=true, gray=false, plus=true, whenClicked=() => console.log("clicked")}) {
     // Check if the button is primary
     let buttonClass = primary ? "btn-primary" : "btn-secondary";
 

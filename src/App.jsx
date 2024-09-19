@@ -5,19 +5,22 @@ import Button from "./UI elements/Button/button";
 import Filter from "./UI elements/Filter/filter";
 import AgentForm from "./Forms/Agent/AgentForm";
 import ListingForm from "./Forms/Listing/ListingForm";
+import Listing from "./Listing";
 import "./App.css";
 
 function App() {
     // Create the data variable of all listings
     const [data, setData] = useState([]);
     const [state, setState] = useState("main");
+    const [listingId, setListingId] = useState('');
 
     const mainState = () => {
         setState("main");
     }
 
     const showListing = (id) => {
-        setState(`listing-${id}`);
+        setState(`show-listing`);
+        setListingId(id);
     }
 
     // For toggling the agent form
@@ -76,6 +79,10 @@ function App() {
 
         {
             state === "listing-form" ? (<ListingForm backTo={mainState} />) : null
+        }
+
+        {
+            state === "show-listing" ? (<Listing back={mainState} current={listingId} showFunction={showListing}/>) : null
         }
 
         <AgentForm />

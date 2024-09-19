@@ -119,6 +119,8 @@
     width: 3.75lvw;
     height: 3.75lvw;
 
+    border-radius: 50%;
+
     object-fit: cover;
 }
 

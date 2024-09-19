@@ -1,0 +1,145 @@
+/* Center everything */
+.listing-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 2lvh;
+}
+
+.listing-form > h1 {
+    font-size: 1.6lvw;
+}
+
+.listing-form > form {
+    display: flex;
+    flex-direction: column;
+
+    width: 41lvw;
+}
+
+.listing-form-part > h2 {
+    font-size: 0.8lvw;
+    width: 41lvw;
+}
+
+.listing-form-part {
+    display: flex;
+    flex-wrap: wrap;
+
+    font-size: 0.7lvw;
+
+    margin-bottom: 4lvh;
+}
+
+.listing-form-part > * {
+    font-size: 0.7lvw;
+}
+
+.flex-row > * {
+    font-size: 0.7lvw;
+    font-weight: 400;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-row > label {
+    margin-right: 1lvw;
+}
+
+.listing-form > form > .move-right {
+    width: 41lvw;
+}
+
+select {
+    height: 3.9lvh;
+    border-radius: 0.5lvw;
+
+    border: 1px solid black;
+    margin-top: 0.25lvw;
+}
+
+textarea {
+    height: 12lvh;
+    width: 41lvw;
+    border-radius: 0.5lvw;
+
+    resize: none;
+
+    border: 1px solid black;
+    margin-top: 0.25lvw;
+}
+
+#description {
+    width: 100%;
+}
+
+/* Same as agentform */
+
+#post-photo > label > input[type="file"] {
+    display: none;
+}
+
+#post-photo {
+    width: 100%;
+}
+
+#post-photo > label {
+    cursor: pointer;
+
+    margin-top: 0.25lvw;
+
+    width: 100%;
+    height: 11lvh;
+
+    border: 1px dashed black;
+    border-radius: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#post-photo > label > div > img {
+    width: 4.7lvw;
+    height: 4.7lvw;
+
+    object-fit: cover;
+    border-radius: 0.75lvw;
+}
+
+#post-photo > label > div > svg {
+    position: relative;
+    left: -15px;
+    bottom: -5px;
+}
+
+.correct > p {
+    color: #45A849;
+}
+
+.correct > p > svg > path {
+    stroke: #45A849;
+}
+
+.incorrect > input {
+    border: 1px solid #F93B1D;
+}
+
+.incorrect > input:focus-visible {
+    outline: #F93B1D solid 1px;
+}
+
+.incorrect > p {
+    color: #F93B1D
+}
+
+.incorrect > p > svg > path {
+    stroke: #F93B1D;
+}

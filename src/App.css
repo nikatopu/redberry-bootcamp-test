@@ -19,3 +19,25 @@
     margin-right: 5.2lvw;
     margin-top: 1.85lvh;
 }
+
+/* The card grid */
+
+.center-card-grid {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.all-cards {
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 92lvw;
+    gap: 1lvw;
+    margin-top: 2lvh;
+}
+
+.all-cards > p {
+    margin-left: 1lvw;
+}

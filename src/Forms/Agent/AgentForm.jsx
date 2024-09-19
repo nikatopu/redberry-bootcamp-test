@@ -17,7 +17,7 @@ function AgentForm() {
     function imageUploaded() {
         // Get the uploaded file
         let file = document.querySelector(
-            'input[type=file]')['files'][0];
+            '#avatar-photo')['files'][0];
 
         // Check if the file is valid
         if (file === undefined || file === null) {
@@ -27,6 +27,16 @@ function AgentForm() {
         // Check if the uploaded file is of an image type
         let parts = file.name.split('.')
         let extension = parts[parts.length - 1];
+
+        // Check if the image file size is over 1mb
+        const fileSizeMB = (file.size / (1024 * 1024));
+
+        if (fileSizeMB > 1) {
+            window.alert("Image is too big, please upload an image less than 1mb in size.")
+            setAvatarFile(null);
+            setAvatar('');
+            return false;
+        }
 
         switch (extension.toLowerCase()) {
             case 'jpg':
@@ -107,7 +117,6 @@ function AgentForm() {
             let res = await fetch("https://api.real-estate-manager.redberryinternship.ge/api/agents", {
                     method: "POST",
                     headers: {
-                        'accept': 'application/json',
                         'Authorization': 'Bearer 9d07c60a-2a96-4377-a1a4-5b313b5d9773',
                     },
                     body: form,
@@ -210,7 +219,7 @@ function AgentForm() {
                     <label>
                         {avatar === '' ? <PlusSvg /> : <ImgUploaded />}
 
-                        <input type="file" name="avatar" onChange={() => imageUploaded()} required/>
+                        <input id="avatar-photo" type="file" name="avatar" onChange={() => imageUploaded()} required/>
                     </label>
                 </label>
                 <div className="move-right">

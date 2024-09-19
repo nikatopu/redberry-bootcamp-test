@@ -29,14 +29,13 @@ const dataReplacement = {
  * @param {object} data The data of the card.
  * @return {React.JSX.Element}
  */
-function Card({data}) {
-    console.log(data);
+function Card({data, show}) {
     // Check if the data is undefined or empty
     if (data === undefined || data == null) {
         data=dataReplacement;
     }
 
-    return <div className="card">
+    return <div className="card" onClick={() => show(data.id)}>
         {/* ------- The card image ------- */}
         <div className="card-image">
             <img src={data.image} alt="The product"/>

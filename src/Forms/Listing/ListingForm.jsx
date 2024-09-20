@@ -202,7 +202,7 @@ function ListingForm({backTo = () => {}}) {
     }
 
     function checkDescription() {
-        return (description.split(" ").length >= 5);
+        return (description.replace(/\s+/g, ' ').trim().split(" ").length >= 5);
     }
 
     const checkRequirements = () => checkAdress() && checkImage() && checkZipCode() && checkPrice() && checkArea() && checkBedrooms() && checkDescription();

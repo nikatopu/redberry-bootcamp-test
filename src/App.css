@@ -41,3 +41,139 @@
 .all-cards > p {
     margin-left: 1lvw;
 }
+
+/* Filters */
+.filter {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5lvw;
+    padding: 0.25lvw;
+    width: max-content;
+
+    border-radius: 0.5lvw;
+    border: 1px solid #DBDBDB;
+}
+
+.filter-component {
+    cursor: pointer;
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.26lvw;
+
+    padding: 0.26lvw;
+    border-radius: 0.26lvw;
+
+    font-size: 0.8lvw;
+
+    font-weight: 600;
+}
+
+.filter-component-active {
+    background-color: #F3F3F3;
+}
+
+.filter-component-active > .actual-button > svg {
+    transform: rotate(180deg);
+}
+
+.actual-button  {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2lvw;
+    align-items: center;
+}
+
+.filter-component-dropdown {
+    position: absolute;
+    top: 4lvh;
+    left: 0;
+}
+
+.filter-div {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid #DBDBDB;
+    border-radius: 1lvw;
+
+    background-color: white;
+
+    padding: 1lvw;
+}
+
+.move-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+/* The Active Filter List */
+.all-active-filters {
+    width: 90lvw;
+    margin: 1lvw 5lvw;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5lvw;
+}
+
+.active-filter {
+    color: #021526CC;
+
+    background-color: white;
+    border: 1px solid #DBDBDB;
+    border-radius: 1lvw;
+
+    padding: 0.3lvw 0.5lvw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+/* The Region Filter*/
+
+.regions-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.regions {
+    width: 35lvw;
+    height: 14lvh;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.regions > label {
+    font-size: 0.7lvw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.2lvw;
+
+    cursor: pointer;
+
+    width: max-content;
+}
+
+.regions > label > input {
+    width: 0.7lvw;
+    height: 0.7lvw;
+
+    color: #DBDBDB;
+}
+
+.regions > label > input:checked {
+    accent-color: #45A849;
+}

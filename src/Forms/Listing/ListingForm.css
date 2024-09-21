@@ -65,6 +65,12 @@ select {
     margin-top: 0.25lvw;
 }
 
+option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 textarea {
     height: 12lvh;
     width: 41lvw;
@@ -142,4 +148,55 @@ textarea {
 
 .incorrect > p > svg > path {
     stroke: #F93B1D;
+}
+
+/* The custom dropdown */
+
+#region {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.2lvw;
+
+    border: 1px solid #808A93;
+    border-radius: 0.5lvw;
+}
+
+.dp-top {
+    border-color: transparent !important;
+}
+
+.dp-top {
+    justify-content: space-between;
+}
+
+.dp {
+    margin: 0;
+    padding: 0.4lvw;
+    border-top: 1px solid #808A93;
+
+    height: 2lvw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.2lvw;
+
+    cursor: pointer;
+
+    font-weight: 400;
+    font-size: 0.7lvw;
+}
+
+.dp > p {
+    margin: 0;
+}
+
+.svg-rotated {
+    transform: rotate(180deg);
+}
+
+/* Radio type css */
+
+.radio {
+    accent-color: #021526;
 }

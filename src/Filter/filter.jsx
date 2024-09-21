@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ByRegion from '../Filters/ByRegion';
-import ByPrice from '../Filters/ByPrice';
-import ByArea from '../Filters/ByArea';
-import ByBedrooms from '../Filters/ByBedrooms';
+import ByRegion from './Filters/ByRegion';
+import ByPrice from './Filters/ByPrice';
+import ByArea from './Filters/ByArea';
+import ByBedrooms from './Filters/ByBedrooms';
 import "./filter.css";
 
 function Filter({ filter, setFilter }) {

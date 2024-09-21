@@ -15,7 +15,7 @@ function ListingForm({backTo = () => {}}) {
     const [area, setArea] = useState(localStorage.getItem('area') || '');
     const [bedrooms, setBedrooms] = useState(localStorage.getItem('bedrooms') || '');
     const [is_rental, setIsRental] = useState(localStorage.getItem('is_rental') || '0');
-    const [agent_id, setAgentId] = useState(localStorage.getItem('agent_id') || '');
+    const [agent_id, setAgentId] = useState(localStorage.getItem('agent_id') || '0');
 
     const [regions, setRegions] = useState([]);
     const [cities, setCities] = useState([]);
@@ -35,6 +35,23 @@ function ListingForm({backTo = () => {}}) {
         localStorage.setItem('agent_id', agent_id);
     }, [address, region_id, description, city_id, zip_code, price, area, bedrooms, is_rental, agent_id]);
 
+    const getAllAgents = async () => {
+        try {
+            const ags = await fetch('https://api.real-estate-manager.redberryinternship.ge/api/agents', {
+                headers: {
+                    'Authorization': 'Bearer 9d07c60a-2a96-4377-a1a4-5b313b5d9773'
+                }
+            });
+            const agentArr = await ags.json();
+            setAgents(agentArr);
+            if (agentArr.length > 0 && !agent_id) {
+                setAgentId(agentArr[0].id);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     // Get the regions, cities, and agents
     useEffect(() => {
         const getAllRegions = async () => {
@@ -50,23 +67,6 @@ function ListingForm({backTo = () => {}}) {
             try {
                 const cit = await fetch('https://api.real-estate-manager.redberryinternship.ge/api/cities');
                 setCities(await cit.json());
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        const getAllAgents = async () => {
-            try {
-                const ags = await fetch('https://api.real-estate-manager.redberryinternship.ge/api/agents', {
-                    headers: {
-                        'Authorization': 'Bearer 9d07c60a-2a96-4377-a1a4-5b313b5d9773'
-                    }
-                });
-                const agentArr = await ags.json();
-                setAgents(agentArr);
-                if (agentArr.length > 0 && !agent_id) {
-                    setAgentId(agentArr[0].id);
-                }
             } catch (error) {
                 console.log(error);
             }
@@ -207,6 +207,17 @@ function ListingForm({backTo = () => {}}) {
 
     const checkRequirements = () => checkAdress() && checkImage() && checkZipCode() && checkPrice() && checkArea() && checkBedrooms() && checkDescription();
 
+    // For the dropdown component
+    const [dpActive, setDpActive] = useState(false);
+
+    // Toggling the agent div
+    const toggleAgent = () => {
+        const agentForm = document.getElementById("agent-form");
+        agentForm.classList.toggle("hidden");
+        // Refresh the agent list
+        getAllAgents();
+    };
+
     return (
         <div className="listing-form" id="listing-form">
             <h1>ლისტინგის დამატება</h1>
@@ -215,13 +226,13 @@ function ListingForm({backTo = () => {}}) {
                 <div className="listing-form-part">
                     <h2>გარიგების ტიპი</h2>
                     <div className="flex-row" required>
-                        <input type="radio" id="იყიდება" name="გარიგება" value={0} onClick={(e) => setIsRental(e.target.value)} checked={is_rental == 0}></input>
+                        <input type="radio" id="იყიდება" name="გარიგება" className="radio" value={0} onClick={(e) => setIsRental(e.target.value)} checked={is_rental == 0}></input>
                         <label>
                             იყიდება
                         </label>
                         
                         
-                        <input type="radio" id="ქირავდება" name="გარიგება" value={1} onClick={(e) => setIsRental(e.target.value)} checked={is_rental == 1}></input>
+                        <input type="radio" id="ქირავდება" name="გარიგება" className="radio"  value={1} onClick={(e) => setIsRental(e.target.value)} checked={is_rental == 1}></input>
                         <label>
                             ქირავდება
                         </label>
@@ -339,21 +350,36 @@ function ListingForm({backTo = () => {}}) {
                     <h2>აგენტი</h2>
                     <label>
                         აირჩიე
-                        <select id="region" name="region" onChange={(i) => setAgentId(i.target.value)} value={agent_id} required>
-                            <option>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#2D3648" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M12 8V16" stroke="#2D3648" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M8 12H16" stroke="#2D3648" stroke-linecap="round" stroke-linejoin="round"/>
+                        <div id="region">
+                            <div className={dpActive ? "dp dp-top" : "dp dp-top"} onClick={() => setDpActive(!dpActive)}>
+                                {
+                                    agent_id == 0 ? <p>აირჩიე</p> : <p>{agents.find((a) => a.id == agent_id)?.name}</p>
+                                }
+
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className={dpActive ? "svg-rotated" : ""}>
+                                    <path d="M3.91232 4.83785C3.68451 4.61004 3.31516 4.61004 3.08736 4.83785C2.85955 5.06565 2.85955 5.435 3.08736 5.6628L6.58736 9.1628C6.81516 9.39061 7.18451 9.39061 7.41232 9.1628L10.9123 5.6628C11.1401 5.435 11.1401 5.06565 10.9123 4.83785C10.6845 4.61004 10.3152 4.61004 10.0874 4.83785L6.99984 7.92537L3.91232 4.83785Z" fill="#021526"/>
                                 </svg>
-                                დაამატე აგენტი
-                            </option>
+
+                            </div>
                             {
-                                agents.map((a) => {
-                                    return <option value={a.id}>{a.name}</option>
-                                }) 
+                                dpActive ? <div className="dp dp-middle" onClick={() => toggleAgent()}>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#2D3648" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 8V16" stroke="#2D3648" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M8 12H16" stroke="#2D3648" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    დაამატე აგენტი
+                                </div>: null
                             }
-                        </select>
+                            {
+                                dpActive ? agents.filter((agent) => agent.id != agent_id).map((agent) => {
+                                        return <div className={agents[agents.length - 1].id == agent.id ? "dp dp-last" : "dp dp-middle"} onClick={() => {setAgentId(agent.id); setDpActive(!dpActive);}}>
+                                            <p>{agent.name}</p>
+                                        </div>
+                                }) : null
+                            }
+                            
+                        </div>
                     </label>
                 </div>
                         

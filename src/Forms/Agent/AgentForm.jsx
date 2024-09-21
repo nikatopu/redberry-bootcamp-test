@@ -4,11 +4,11 @@ import "../../UI elements/Button/button.css";
 
 function AgentForm() {
   const initialFormData = {
-    name: localStorage.getItem('name') || '',
-    surname: localStorage.getItem('surname') || '',
-    email: localStorage.getItem('email') || '',
-    phone: localStorage.getItem('phone') || '',
-    avatar: localStorage.getItem('avatar') || '',
+    name: '',
+    surname: '',
+    email: '',
+    phone: '',
+    avatar: '',
     avatarFile: null,
   };
 
@@ -18,7 +18,6 @@ function AgentForm() {
 
   const setField = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    localStorage.setItem(field, value);
   };
 
   // Image to Base64
@@ -49,13 +48,13 @@ function AgentForm() {
       const base64String = reader.result.replace(/^data:.+;base64,/, '');
       setField('avatar', base64String);
       setField('avatarFile', file);
-      localStorage.setItem('avatar', base64String);
     };
     reader.readAsDataURL(file);
   };
 
   // Toggle form visibility
   const toggleAgent = () => {
+    setFormData(initialFormData); // Clear the input data
     document.getElementById("agent-form").classList.toggle("hidden");
   };
 
@@ -94,7 +93,6 @@ function AgentForm() {
       if (res.status === 201) {
         alert("აგენტი დაემატა წარმატებით!");
         toggleAgent();
-        localStorage.clear(); // Clear localStorage on successful submission
       } else {
         alert("აგენტის დამატება ვერ მოხერხდა, გთხოვთ სცადოთ თავიდან.");
       }
@@ -125,13 +123,6 @@ function AgentForm() {
       </svg>
     </div>
   );
-
-  useEffect(() => {
-    // Initialize avatar image from localStorage
-    if (localStorage.getItem('avatar')) {
-      setField('avatar', localStorage.getItem('avatar'));
-    }
-  }, []);
 
   return (
     <div className="agent-form hidden" id="agent-form" onClick={toggleAgent}>

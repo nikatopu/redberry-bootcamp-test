@@ -152,6 +152,12 @@ textarea {
 
 /* The custom dropdown */
 
+.of-custom-dropdown {
+    position: relative;
+
+    height: 7lvh;
+}
+
 .custom-dropdown {
     display: flex;
     flex-direction: column;
@@ -159,13 +165,21 @@ textarea {
 
     border: 1px solid #808A93;
     border-radius: 0.5lvw;
+    background-color: white;
+
+    position: absolute;
+    width: 20lvw;
+    top: 3lvh;
+}
+
+.dp-reverse {
+    flex-direction: column-reverse !important;
+    bottom: -2lvh;
+    top: auto !important;
 }
 
 .dp-top {
     border-color: transparent !important;
-}
-
-.dp-top {
     justify-content: space-between;
 }
 
@@ -185,6 +199,11 @@ textarea {
 
     font-weight: 400;
     font-size: 0.7lvw;
+}
+
+.dp-reverse > .dp {
+    border-top: 0px solid transparent !important;
+    border-bottom: 1px solid #808A93;
 }
 
 .dp > p {

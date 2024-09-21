@@ -222,8 +222,6 @@ function ListingForm({backTo = () => {}}) {
     const toggleAgent = () => {
         const agentForm = document.getElementById("agent-form");
         agentForm.classList.toggle("hidden");
-        // Refresh the agent list
-        getAllAgents();
     };
 
     return (
@@ -271,7 +269,7 @@ function ListingForm({backTo = () => {}}) {
                             მხოლოდ რიცხვები
                         </p>
                     </label>
-                    <label>
+                    <label className="of-custom-dropdown">
                         რეგიონი
                         <div className="custom-dropdown">
                             <div className={selectedDropdown === "regions" ? "dp dp-top" : "dp dp-top"} onClick={() => updateDropdown("regions")}>
@@ -293,7 +291,7 @@ function ListingForm({backTo = () => {}}) {
                             }
                         </div>
                     </label>
-                    <label>
+                    <label className="of-custom-dropdown">
                         ქალაქი
                         <div className="custom-dropdown">
                             <div className={selectedDropdown === "cities" ? "dp dp-top" : "dp dp-top"} onClick={() => updateDropdown("cities")}>
@@ -380,9 +378,9 @@ function ListingForm({backTo = () => {}}) {
 
                 <div className="listing-form-part">
                     <h2>აგენტი</h2>
-                    <label>
+                    <label className="of-custom-dropdown">
                         აირჩიე
-                        <div className="custom-dropdown">
+                        <div className="custom-dropdown dp-reverse">
                             <div className={selectedDropdown === "agents" ? "dp dp-top" : "dp dp-top"} onClick={() => updateDropdown("agents")}>
                                 {
                                     agent_id == '' ? <p>აირჩიე</p> : <p>{agents.find((a) => a.id == agent_id)?.name} {agents.find((a) => a.id == agent_id)?.surname}</p>

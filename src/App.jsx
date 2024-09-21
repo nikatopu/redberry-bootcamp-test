@@ -104,6 +104,9 @@ function App() {
         fetchListings();
     }, []);
 
+    // Fetch regions on state change
+    useEffect(() => {fetchListings()}, [state])
+
     // Fetch the listings after any major change is made to the filter
     useEffect(() => {
         fetchListings();

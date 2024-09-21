@@ -125,8 +125,8 @@ function AgentForm() {
   );
 
   return (
-    <div className="agent-form hidden" id="agent-form" onClick={toggleAgent}>
-      <div className="agent-form-inside" onClick={toggleAgent}>
+    <div className="agent-form hidden" id="agent-form" onClick={() => toggleAgent}>
+      <div className="agent-form-inside" onClick={() => toggleAgent}>
         <h1>აგენტის დამატება</h1>
         <form onSubmit={fetchHandle}>
           <label className={name ? (checkName() ? "correct" : "incorrect") : ""}>

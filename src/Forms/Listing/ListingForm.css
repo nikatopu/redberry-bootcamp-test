@@ -152,7 +152,7 @@ textarea {
 
 /* The custom dropdown */
 
-#region {
+.custom-dropdown {
     display: flex;
     flex-direction: column;
     margin-top: 0.2lvw;

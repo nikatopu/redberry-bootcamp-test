@@ -7,9 +7,9 @@ function ListingForm({backTo = () => {}}) {
     const [address, setAddress] = useState(localStorage.getItem('address') || '');
     const [image, setImage] = useState(null);
     const [imageBase64, setImageBase64] = useState('');
-    const [region_id, setRegionId] = useState(localStorage.getItem('region_id') || '1');
+    const [region_id, setRegionId] = useState(localStorage.getItem('region_id') || '');
     const [description, setDescription] = useState(localStorage.getItem('description') || '');
-    const [city_id, setCityId] = useState(localStorage.getItem('city_id') || '1');
+    const [city_id, setCityId] = useState(localStorage.getItem('city_id') || '');
     const [zip_code, setZipCode] = useState(localStorage.getItem('zip_code') || '');
     const [price, setPrice] = useState(localStorage.getItem('price') || '');
     const [area, setArea] = useState(localStorage.getItem('area') || '');
@@ -20,6 +20,11 @@ function ListingForm({backTo = () => {}}) {
     const [regions, setRegions] = useState([]);
     const [cities, setCities] = useState([]);
     const [agents, setAgents] = useState([]);
+
+    // Automatically update the city id after the change of region id
+    useEffect(() => {
+        setCityId(cities.find((city) => city.region_id === region_id)?.id);
+    }, [region_id])
 
     // Update localStorage whenever a state changes
     useEffect(() => {
@@ -75,7 +80,7 @@ function ListingForm({backTo = () => {}}) {
         getAllRegions();
         getAllCities();
         getAllAgents();
-    }, [agent_id]);
+    }, []);
 
     const updateRegion = (regId) => {
         setRegionId(regId);
@@ -208,7 +213,10 @@ function ListingForm({backTo = () => {}}) {
     const checkRequirements = () => checkAdress() && checkImage() && checkZipCode() && checkPrice() && checkArea() && checkBedrooms() && checkDescription();
 
     // For the dropdown component
-    const [dpActive, setDpActive] = useState(false);
+    const [selectedDropdown, setSelectedDropdown] = useState("");
+    const updateDropdown = (dp) => {
+        selectedDropdown == dp ? setSelectedDropdown("") : setSelectedDropdown(dp);
+    }
 
     // Toggling the agent div
     const toggleAgent = () => {
@@ -265,23 +273,47 @@ function ListingForm({backTo = () => {}}) {
                     </label>
                     <label>
                         რეგიონი
-                        <select id="region" name="region" onChange={(i) => updateRegion(i.target.value)} value={region_id} required>
+                        <div className="custom-dropdown">
+                            <div className={selectedDropdown === "regions" ? "dp dp-top" : "dp dp-top"} onClick={() => updateDropdown("regions")}>
+                                {
+                                    <p>{regions.find((region) => region.id == region_id)?.name}</p>
+                                }
+
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className={selectedDropdown === "regions" ? "svg-rotated" : ""}>
+                                    <path d="M3.91232 4.83785C3.68451 4.61004 3.31516 4.61004 3.08736 4.83785C2.85955 5.06565 2.85955 5.435 3.08736 5.6628L6.58736 9.1628C6.81516 9.39061 7.18451 9.39061 7.41232 9.1628L10.9123 5.6628C11.1401 5.435 11.1401 5.06565 10.9123 4.83785C10.6845 4.61004 10.3152 4.61004 10.0874 4.83785L6.99984 7.92537L3.91232 4.83785Z" fill="#021526"/>
+                                </svg>
+
+                            </div>
                             {
-                                regions.map((e) => {
-                                    return <option value={e.id}>{e.name}</option>
-                                })
+                                selectedDropdown === "regions" ? regions.map((region) => {
+                                        return <div className="dp dp-middle" onClick={async () => {setRegionId(region.id); updateDropdown("");}}>
+                                            <p>{region.name}</p>
+                                        </div>
+                                }) : null
                             }
-                        </select>
+                        </div>
                     </label>
                     <label>
                         ქალაქი
-                        <select id="region" name="region" onChange={(i) => setCityId(i.target.value)} value={city_id}  required>
+                        <div className="custom-dropdown">
+                            <div className={selectedDropdown === "cities" ? "dp dp-top" : "dp dp-top"} onClick={() => updateDropdown("cities")}>
+                                {
+                                    <p>{cities.find((city) => city.id == city_id)?.name}</p>
+                                }
+
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className={selectedDropdown === "cities" ? "svg-rotated" : ""}>
+                                    <path d="M3.91232 4.83785C3.68451 4.61004 3.31516 4.61004 3.08736 4.83785C2.85955 5.06565 2.85955 5.435 3.08736 5.6628L6.58736 9.1628C6.81516 9.39061 7.18451 9.39061 7.41232 9.1628L10.9123 5.6628C11.1401 5.435 11.1401 5.06565 10.9123 4.83785C10.6845 4.61004 10.3152 4.61004 10.0874 4.83785L6.99984 7.92537L3.91232 4.83785Z" fill="#021526"/>
+                                </svg>
+
+                            </div>
                             {
-                                cities.filter((city) => city.region_id == region_id).map((city) => {
-                                    return <option value={city.id}>{city.name}</option>
-                                }) 
+                                selectedDropdown === "cities" ? cities.filter((city) => city.region_id === region_id).map((city) => {
+                                        return <div className="dp dp-middle" onClick={() => {setCityId(city.id); updateDropdown("");}}>
+                                            <p>{city.name}</p>
+                                        </div>
+                                }) : null
                             }
-                        </select>
+                        </div>
                     </label>
                 </div>
                 
@@ -350,19 +382,19 @@ function ListingForm({backTo = () => {}}) {
                     <h2>აგენტი</h2>
                     <label>
                         აირჩიე
-                        <div id="region">
-                            <div className={dpActive ? "dp dp-top" : "dp dp-top"} onClick={() => setDpActive(!dpActive)}>
+                        <div className="custom-dropdown">
+                            <div className={selectedDropdown === "agents" ? "dp dp-top" : "dp dp-top"} onClick={() => updateDropdown("agents")}>
                                 {
-                                    agent_id == 0 ? <p>აირჩიე</p> : <p>{agents.find((a) => a.id == agent_id)?.name}</p>
+                                    agent_id == '' ? <p>აირჩიე</p> : <p>{agents.find((a) => a.id == agent_id)?.name} {agents.find((a) => a.id == agent_id)?.surname}</p>
                                 }
 
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className={dpActive ? "svg-rotated" : ""}>
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className={selectedDropdown === "agents" ? "svg-rotated" : ""}>
                                     <path d="M3.91232 4.83785C3.68451 4.61004 3.31516 4.61004 3.08736 4.83785C2.85955 5.06565 2.85955 5.435 3.08736 5.6628L6.58736 9.1628C6.81516 9.39061 7.18451 9.39061 7.41232 9.1628L10.9123 5.6628C11.1401 5.435 11.1401 5.06565 10.9123 4.83785C10.6845 4.61004 10.3152 4.61004 10.0874 4.83785L6.99984 7.92537L3.91232 4.83785Z" fill="#021526"/>
                                 </svg>
 
                             </div>
                             {
-                                dpActive ? <div className="dp dp-middle" onClick={() => toggleAgent()}>
+                                selectedDropdown === "agents" ? <div className="dp dp-middle" onClick={() => toggleAgent()}>
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#2D3648" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M12 8V16" stroke="#2D3648" stroke-linecap="round" stroke-linejoin="round"/>
@@ -372,9 +404,9 @@ function ListingForm({backTo = () => {}}) {
                                 </div>: null
                             }
                             {
-                                dpActive ? agents.filter((agent) => agent.id != agent_id).map((agent) => {
-                                        return <div className={agents[agents.length - 1].id == agent.id ? "dp dp-last" : "dp dp-middle"} onClick={() => {setAgentId(agent.id); setDpActive(!dpActive);}}>
-                                            <p>{agent.name}</p>
+                                selectedDropdown === "agents" ? agents.filter((agent) => agent.id != agent_id).map((agent) => {
+                                        return <div className="dp dp-middle" onClick={() => {setAgentId(agent.id); updateDropdown("");}}>
+                                            <p>{agent.name} {agent.surname}</p>
                                         </div>
                                 }) : null
                             }

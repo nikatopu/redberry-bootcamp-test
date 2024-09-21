@@ -79,6 +79,7 @@ function ByPrice({ filter, setFilter }) {
                                 value={newFilter.prices.minPrice !== 0 ? newFilter.prices.minPrice : ''} 
                                 onChange={(e) => updateMinPrice(e.target.value)} 
                             />
+                            <p>₾</p>
                         </label>
                         <h4>მინ. ფასი</h4>
                         {
@@ -94,6 +95,7 @@ function ByPrice({ filter, setFilter }) {
                                 value={newFilter.prices.maxPrice !== 0 ? newFilter.prices.maxPrice : ''} 
                                 onChange={(e) => updateMaxPrice(e.target.value)} 
                             />
+                            <p>₾</p>
                         </label>
                         <h4>მაქს. ფასი</h4>
                         {

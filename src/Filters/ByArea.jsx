@@ -79,6 +79,7 @@ function ByArea({ filter, setFilter }) {
                                 value={newFilter.areas.minArea !== 0 ? newFilter.areas.minArea : ''} 
                                 onChange={(e) => updateMinArea(e.target.value)} 
                             />
+                            <p>მ²</p>
                         </label>
                         <h4>მინ. მ<sup>2</sup></h4>
                         {
@@ -94,6 +95,7 @@ function ByArea({ filter, setFilter }) {
                                 value={newFilter.areas.maxArea !== 0 ? newFilter.areas.maxArea : ''} 
                                 onChange={(e) => updateMaxArea(e.target.value)} 
                             />
+                            <p>მ²</p>
                         </label>
                         <h4>მაქს. მ<sup>2</sup></h4>
                         {

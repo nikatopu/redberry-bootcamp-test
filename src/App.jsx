@@ -5,7 +5,7 @@ import Button from "./UI elements/Button/button";
 import AgentForm from "./Forms/Agent/AgentForm";
 import ListingForm from "./Forms/Listing/ListingForm";
 import Listing from "./Listing";
-import Filter from "./filter";
+import Filter from "./Filter/filter";
 import ActiveFilters from "./Filters/ActiveFilters";
 import "./App.css";
 

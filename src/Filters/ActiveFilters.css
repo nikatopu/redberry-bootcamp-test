@@ -1,0 +1,140 @@
+/* The Active Filter List */
+.all-active-filters {
+    width: 90lvw;
+    margin: 1lvw 5lvw;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5lvw;
+}
+
+.all-active-filters > b {
+    cursor: pointer;
+}
+
+.active-filter {
+    color: #021526CC;
+
+    background-color: white;
+    border: 1px solid #DBDBDB;
+    border-radius: 1lvw;
+
+    padding: 0.3lvw 0.5lvw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.active-filter > p {
+    margin: 0;
+}
+
+/* The Region Filter*/
+
+.filter-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.regions {
+    width: 35lvw;
+    height: 14lvh;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.regions > label {
+    font-size: 0.7lvw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.2lvw;
+
+    cursor: pointer;
+
+    width: max-content;
+}
+
+.regions > label > input {
+    width: 0.7lvw;
+    height: 0.7lvw;
+
+    color: #DBDBDB;
+}
+
+.regions > label > input:checked {
+    accent-color: #45A849;
+}
+
+/* The prices */
+
+.prices {
+    display: flex;
+    flex-direction: row;
+}
+
+.price-column > p {
+    font-size: 0.8lvw;
+    font-weight: 400;
+
+    cursor: pointer;
+}
+
+.price-column > label > input {
+    padding-left: 0.5lvw;
+    margin-right: 1lvw;
+
+    border: 1px solid #808A93;
+    border-radius: 0.2lvw;
+
+    font-size: 0.8lvw;
+
+    width: 8lvw;
+}
+
+.price-column > label {
+    position: relative;
+    width: fit-content;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.price-column > label > p {
+    position: absolute;
+    right: 2lvw;
+    top: 0.5lvw;
+
+    font-size: 0.7lvw;
+    color: #2D3648;
+    font-weight: 400;
+}
+
+/* The bedrooms */
+
+.filter-box > input {
+    width: 2.5lvw;
+    height: 2lvw;
+
+    margin: 0.5lvw 0;
+
+    border: 1px solid #808A93;
+    border-radius: 0.4lvw;
+}
+
+#bedrooms {
+    width: 13lvw;
+}
+
+#bedrooms > input {
+    text-align: center;
+    color: #02152666;
+}

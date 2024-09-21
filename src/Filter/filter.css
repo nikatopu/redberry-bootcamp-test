@@ -1,0 +1,71 @@
+/* Filters */
+.filter {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5lvw;
+    padding: 0.25lvw;
+    width: max-content;
+
+    border-radius: 0.5lvw;
+    border: 1px solid #DBDBDB;
+}
+
+.filter-component {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.26lvw;
+
+    padding: 0.26lvw;
+    border-radius: 0.26lvw;
+
+    font-size: 0.8lvw;
+
+    font-weight: 600;
+}
+
+.filter-component-active {
+    background-color: #F3F3F3;
+}
+
+.filter-component-active > .actual-button > svg {
+    transform: rotate(180deg);
+}
+
+.actual-button  {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    gap: 0.2lvw;
+    align-items: center;
+}
+
+.filter-component-dropdown {
+    position: absolute;
+    top: 4lvh;
+    left: 0;
+}
+
+.filter-div {
+    cursor: default;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid #DBDBDB;
+    border-radius: 1lvw;
+
+    background-color: white;
+
+    padding: 1lvw;
+}
+
+.move-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}

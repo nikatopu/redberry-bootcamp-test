@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import "./ActiveFilters.css";
 
 function ActiveFilters({ filter, setFilter, regions}) {
     // The empty filter object to set the filter

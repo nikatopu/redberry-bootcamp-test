@@ -220,3 +220,13 @@
 .listing-scroll > .all-cards > .card {
     width: 18lvw;
 }
+
+/* Blocked svg */
+
+.svg-blocked {
+    cursor: default !important;
+}
+
+.svg-blocked > path {
+    fill: #02152666;
+}

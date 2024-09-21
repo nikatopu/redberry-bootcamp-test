@@ -15,15 +15,18 @@ function App() {
     const [state, setState] = useState("main");         // What state are we in? (For changing "pages")
     const [listingId, setListingId] = useState('');     // The id of the listing we are currently seeing
     const [regionsArr, setRegionsArr] = useState([]);   // The array holding all of the regions
-    const [filter, setFilter] = useState({              // The filter object we use to filter through the listing
-        by_region: false,
-        regions: [],
-        by_price: false,
-        prices: { minPrice: 0, maxPrice: 0 },
-        by_area: false,
-        areas: { minArea: 0, maxArea: 0 },
-        by_bedrooms: false,
-        bedrooms: 0,
+    const [filter, setFilter] = useState(() => {        // The filter object with initial state from localStorage
+        const savedFilter = localStorage.getItem('filter');
+        return savedFilter ? JSON.parse(savedFilter) : {
+            by_region: false,
+            regions: [],
+            by_price: false,
+            prices: { minPrice: 0, maxPrice: 0 },
+            by_area: false,
+            areas: { minArea: 0, maxArea: 0 },
+            by_bedrooms: false,
+            bedrooms: 0,
+        };
     });
 
     // Different states
@@ -65,8 +68,13 @@ function App() {
         agentForm.classList.toggle("hidden");
     };
 
+    // Save filter to localStorage on change
+    useEffect(() => {
+        localStorage.setItem('filter', JSON.stringify(filter));
+    }, [filter]);
+
     // Fetching appropriate data
-    const fetchRegions = async (event) => {
+    const fetchRegions = async () => {
         try {
             const res = await fetch('https://api.real-estate-manager.redberryinternship.ge/api/regions');
             setRegionsArr(await res.json());
@@ -75,7 +83,7 @@ function App() {
         }
     };
 
-    const fetchListings = async (event) => {
+    const fetchListings = async () => {
         try {
             const res = await fetch('https://api.real-estate-manager.redberryinternship.ge/api/real-estates', {
                 headers: {
@@ -114,22 +122,22 @@ function App() {
 
         // Return false if max is 0 or below 0
         if (max_p <= 0) {
-            return false
+            return false;
         }
 
         // Return false if min p is smaller than 0
         if (min_p < 0) {
-            return false
+            return false;
         }
 
         // Return false if min p is greater than max p
         if (max_p < min_p) {
-            return false
+            return false;
         }
 
         // For any other case, return true
         return true;
-    }
+    };
 
     // Filter listings by region
     const filterListings = (arr) => {
@@ -138,10 +146,9 @@ function App() {
         const byArea = compareUnits(filter.areas.minArea, filter.areas.maxArea);
         const byBedrooms = filter.bedrooms > 0;
         return arr.filter((listing) => byRegion ? filter.regions.includes(listing.city.region_id) : true)
-                .filter((listing) => byPrice ? ((listing.price >= filter.prices.minPrice) && (listing.price <= filter.prices.maxPrice)) : true)
-                .filter((listing) => byArea ? ((listing.area >= filter.areas.minArea) && (listing.area <= filter.areas.maxArea)) : true)
-                .filter((listing) => byBedrooms ? (listing.bedrooms == filter.bedrooms) : true);
-
+            .filter((listing) => byPrice ? ((listing.price >= filter.prices.minPrice) && (listing.price <= filter.prices.maxPrice)) : true)
+            .filter((listing) => byArea ? ((listing.area >= filter.areas.minArea) && (listing.area <= filter.areas.maxArea)) : true)
+            .filter((listing) => byBedrooms ? (listing.bedrooms == filter.bedrooms) : true);
     };
 
     return (
@@ -153,6 +160,6 @@ function App() {
             <AgentForm />
         </div>
     );
-}   
+}
 
 export default App;
